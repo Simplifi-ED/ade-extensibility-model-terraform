@@ -3,6 +3,8 @@
 
 ARG BASE_IMAGE=mcr.microsoft.com/deployment-environments/runners/core
 ARG IMAGE_VERSION=latest
+ENV TERRAFORM_VERSION 1.9.8
+
 
 FROM ${BASE_IMAGE}:${IMAGE_VERSION}
 WORKDIR /
@@ -13,7 +15,7 @@ ARG IMAGE_VERSION
 ARG BUILD_DATE
 
 # install terraform
-RUN wget -O terraform.zip https://releases.hashicorp.com/terraform/1.7.4/terraform_1.7.4_linux_amd64.zip
+RUN wget -O terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 RUN unzip terraform.zip && rm terraform.zip
 RUN mv terraform /usr/bin/terraform
 
